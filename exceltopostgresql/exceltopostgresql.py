@@ -34,17 +34,16 @@ class exceltoDBtable:
     
     def __init__(self,filePath,host_ip=False,usrID =False,pwd=False,database_name=False,port:str= "5432",save2tableName=False):
         
-        if not any([host_ip,database_name,usrID,pwd]):
+        if not any([host_ip, database_name, usrID, pwd]):
             raise Exception("Partially inputs, please check your inputs...")
-        else:
-            self.filePath = filePath
-            self.host_ip = host_ip
-            self.database_name=database_name
-            self.usrID = usrID
-            self.pwd = pwd
-            self.port = port
-            self.save2tableName = save2tableName
-            
+        self.filePath = filePath
+        self.host_ip = host_ip
+        self.database_name=database_name
+        self.usrID = usrID
+        self.pwd = pwd
+        self.port = port
+        self.save2tableName = save2tableName
+
         self.postgresql_cur()
         self.readData()
         self.save2database()
@@ -64,19 +63,18 @@ class exceltoDBtable:
         else:
             raise Exception("Unable to load input file...")
     
-    def save2database(self) ->"DataFrame to database":
+    def save2database(self) -> "DataFrame to database":
         # specificy the table name
         if self.save2tableName:
             tableName = self.save2tableName
+        elif "/" in self.filePath:
+            tableName = self.filePath.split("/")[-1].split(".")[0]
         else:
-            if "/" in self.filePath:
-                tableName = self.filePath.split("/")[-1].split(".")[0]
-            else:
-                tableName = self.filePath.split(".")[0]
-                
+            tableName = self.filePath.split(".")[0]
+
         # using pandas to save table to database
         try:
             self.file_data.to_sql(tableName,con=self.engine)
-            print("Successfully save %s into database..."%tableName)
+            print(f"Successfully save {tableName} into database...")
         except Exception as e:
             raise Exception(e)
