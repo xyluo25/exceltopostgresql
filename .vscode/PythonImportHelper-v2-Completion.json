@@ -47,6 +47,60 @@
     {
         "label": "exceltoDBtable",
         "kind": 6,
+        "importPath": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "description": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "peekOfCode": "class exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".\n            database_name (bool, optional): [description]. Defaults to \"\".\n            port (str, optional): [description]. Defaults to \"5432\".",
+        "detail": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "documentation": {}
+    },
+    {
+        "label": "hostname",
+        "kind": 5,
+        "importPath": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "description": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "peekOfCode": "hostname = socket.gethostname()\nlocal_ip = socket.gethostbyname(hostname)\nclass exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".",
+        "detail": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "documentation": {}
+    },
+    {
+        "label": "local_ip",
+        "kind": 5,
+        "importPath": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "description": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "peekOfCode": "local_ip = socket.gethostbyname(hostname)\nclass exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".\n            database_name (bool, optional): [description]. Defaults to \"\".",
+        "detail": "build.bdist.win-amd64.wheel.exceltopostgresql.exceltopostgresql",
+        "documentation": {}
+    },
+    {
+        "label": "exceltoDBtable",
+        "kind": 6,
+        "importPath": "build.lib.exceltopostgresql.exceltopostgresql",
+        "description": "build.lib.exceltopostgresql.exceltopostgresql",
+        "peekOfCode": "class exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".\n            database_name (bool, optional): [description]. Defaults to \"\".\n            port (str, optional): [description]. Defaults to \"5432\".",
+        "detail": "build.lib.exceltopostgresql.exceltopostgresql",
+        "documentation": {}
+    },
+    {
+        "label": "hostname",
+        "kind": 5,
+        "importPath": "build.lib.exceltopostgresql.exceltopostgresql",
+        "description": "build.lib.exceltopostgresql.exceltopostgresql",
+        "peekOfCode": "hostname = socket.gethostname()\nlocal_ip = socket.gethostbyname(hostname)\nclass exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".",
+        "detail": "build.lib.exceltopostgresql.exceltopostgresql",
+        "documentation": {}
+    },
+    {
+        "label": "local_ip",
+        "kind": 5,
+        "importPath": "build.lib.exceltopostgresql.exceltopostgresql",
+        "description": "build.lib.exceltopostgresql.exceltopostgresql",
+        "peekOfCode": "local_ip = socket.gethostbyname(hostname)\nclass exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".\n            database_name (bool, optional): [description]. Defaults to \"\".",
+        "detail": "build.lib.exceltopostgresql.exceltopostgresql",
+        "documentation": {}
+    },
+    {
+        "label": "exceltoDBtable",
+        "kind": 6,
         "importPath": "exceltopostgresql.exceltopostgresql",
         "description": "exceltopostgresql.exceltopostgresql",
         "peekOfCode": "class exceltoDBtable:\n    \"\"\"This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database\n        define inputs variables\n        Args:\n            filePath (str): [path of your input file name]\n            host_ip (bool, optional): [description]. Defaults to \"\".\n            usrID (bool, optional): [description]. Defaults to \"\".\n            pwd (bool, optional): [description]. Defaults to \"\".\n            database_name (bool, optional): [description]. Defaults to \"\".\n            port (str, optional): [description]. Defaults to \"5432\".",
