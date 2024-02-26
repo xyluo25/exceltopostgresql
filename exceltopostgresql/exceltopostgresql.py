@@ -11,26 +11,28 @@ import socket
 import pandas as pd
 import psycopg2
 import sqlalchemy
+from pyufunc import func_running_time
 
 hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
 
-class exceltoDBtable:
+class ExcelToDB:
     """This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database
         define inputs variables
 
         Args:
             filePath (str): [path of your input file name]
-            host_ip (bool, optional): [description]. Defaults to "".
-            usrID (bool, optional): [description]. Defaults to "".
-            pwd (bool, optional): [description]. Defaults to "".
-            database_name (bool, optional): [description]. Defaults to "".
-            port (str, optional): [description]. Defaults to "5432".
-            save2tableName (bool, optional): [description]. Defaults to "".
+            host_ip (bool, optional): the ip of your host machine. Defaults to "".
+            usrID (bool, optional): user id of your postgresql database. Defaults to "".
+            pwd (bool, optional): password of your postgresql database. Defaults to "".
+            database_name (bool, optional): the exact database name you want your data save to. Defaults to "".
+            port (str, optional): the postgresql port. Defaults to "5432".
+            rename_table (bool, optional): rename your input table.
+                if "", will use exact the same table name of your input file. Defaults to "".
 
         Raises:
-            Exception: [if the inputs in not correct then raise exceptions]
+            Exception: [if the inputs in not correct then raise exceptions]: Partially inputs, please check your inputs...
         """
 
     def __init__(self,
@@ -71,6 +73,7 @@ class exceltoDBtable:
         else:
             raise Exception("Unable to load input file...")
 
+    @func_running_time
     def save2database(self) -> None:
         # specify the table name
         if self.rename_table:
@@ -85,4 +88,4 @@ class exceltoDBtable:
             self.file_data.to_sql(tableName, con=self.engine)
             print("Successfully save %s into Postgresql Database..." % tableName)
         except Exception as e:
-            raise Exception(e)
+            raise Exception(e) from e

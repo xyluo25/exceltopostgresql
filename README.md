@@ -1,6 +1,6 @@
 # exceltopostgresql
 
-A model to automatically save your local excel file (xlsx,xls,csv) onto your postgresql database
+Automatically save your local excel files (xlsx,xls,csv) onto Postgresql database
 
 # Introduction
 
@@ -10,7 +10,7 @@ This package help to convert your excel files (xlsx,xls,csv) to postgresql datab
 
 exceltopostgresql can be installed as:
 
-```
+```python
 pip install exceltopostgresql
 ```
 
@@ -24,8 +24,8 @@ pip install exceltopostgresql
 
 # QuickStart
 
-```
-import exceltosqlserver as ep
+```python
+import exceltopostgresql as ep
 # generate the class instance
 
 # STEP One, prepare your input pareameters
@@ -63,20 +63,21 @@ ep.exceltoDBtable(yourFile,yourHostORip,yourUsrID,yourPWD,yourDBname,save2tableN
 output:
 Successfully load excel data...
 Secessfully connected to SQL Server...
-Secessfully saved 'yourtable' to Posggresql...
+Secessfully saved 'yourtable' to Postgresql...
 ```
 
 # API Reference
 
-exceltopostgresql.exceltoDBtable(`filePath, host_ip="", usrID ="", pwd="", database_name="", port= "5432", rename_table=""`)
+exceltopostgresql.ExcelToDB(`filePath, host_ip="", usrID ="", pwd="", database_name="", port= "5432", rename_table=""`)
 
 ```
 Args:
             filePath (str): [path of your input file name]
-            host_ip (bool, optional): [description]. Defaults to "".
-            usrID (bool, optional): [description]. Defaults to "".
-            pwd (bool, optional): [description]. Defaults to "".
-            database_name (bool, optional): [description]. Defaults to "".
-            port (str, optional): [description]. Defaults to "5432".
-            save2tableName (bool, optional): [description]. Defaults to "".
+            host_ip (bool, optional): the ip of your host machine. Defaults to "".
+            usrID (bool, optional): user id of your postgresql database. Defaults to "".
+            pwd (bool, optional): password of your postgresql database. Defaults to "".
+            database_name (bool, optional): the exact database name you want your data save to. Defaults to "".
+            port (str, optional): the postgresql port. Defaults to "5432".
+            rename_table (bool, optional): rename your input table.
+                if "", will use exact the same table name of your input file. Defaults to "".
 ```
