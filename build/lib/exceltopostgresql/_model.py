@@ -6,6 +6,6 @@
 ##############################################################
 
 
-from .exceltopostgresql import exceltoDBtable
+from .exceltopostgresql import ExcelToDB
 from .exceltopostgresql import hostname
 from .exceltopostgresql import local_ip

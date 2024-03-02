@@ -10,3 +10,4 @@ numpy
 beautifulsoup4
 requests
 urllib3
+exceltopostgresql

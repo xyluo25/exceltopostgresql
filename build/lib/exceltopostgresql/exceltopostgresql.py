@@ -4,33 +4,41 @@
 # Contact Info: luoxiangyong01@gmail.com
 # Author/Copyright: Mr. Xiangyong Luo
 ##############################################################
-
+from __future__ import annotations
+from typing import TYPE_CHECKING
 
 import socket
-
 import pandas as pd
-import psycopg2
 import sqlalchemy
+from pyufunc import func_running_time, requires
+
+if TYPE_CHECKING:
+    import sqlalchemy
+    import pandas as pd
+    import psycopg2
+
 
 hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
 
-class exceltoDBtable:
+@requires("pandas", "sqlalchemy")
+class ExcelToDB:
     """This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database
         define inputs variables
 
         Args:
             filePath (str): [path of your input file name]
-            host_ip (bool, optional): [description]. Defaults to "".
-            usrID (bool, optional): [description]. Defaults to "".
-            pwd (bool, optional): [description]. Defaults to "".
-            database_name (bool, optional): [description]. Defaults to "".
-            port (str, optional): [description]. Defaults to "5432".
-            save2tableName (bool, optional): [description]. Defaults to "".
+            host_ip (bool, optional): the ip of your host machine. Defaults to "".
+            usrID (bool, optional): user id of your postgresql database. Defaults to "".
+            pwd (bool, optional): password of your postgresql database. Defaults to "".
+            database_name (bool, optional): the exact database name you want your data save to. Defaults to "".
+            port (str, optional): the postgresql port. Defaults to "5432".
+            rename_table (bool, optional): rename your input table.
+                if "", will use exact the same table name of your input file. Defaults to "".
 
         Raises:
-            Exception: [if the inputs in not correct then raise exceptions]
+            Exception: [if the inputs in not correct then raise exceptions]: Partially inputs, please check your inputs...
         """
 
     def __init__(self,
@@ -53,15 +61,15 @@ class exceltoDBtable:
         self.port = port
         self.rename_table = rename_table
 
-        self.postgresql_cur()
-        self.readData()
-        self.save2database()
+    def _postgresql_cur(self):
+        try:
+            db_url = f"postgresql+psycopg2://{self.usrID}:{self.pwd}@{self.host_ip}:{self.port}/{self.database_name}"
+            self.engine = sqlalchemy.create_engine(db_url)
+            print("Successfully connect to postgresql...")
+        except Exception as e:
+            raise Exception(e) from e
 
-    def postgresql_cur(self):
-        db_url = f"postgresql+psycopg2://{self.usrID}:{self.pwd}@{self.host_ip}:{self.port}/{self.database_name}"
-        self.engine = sqlalchemy.create_engine(db_url)
-
-    def readData(self) -> None:
+    def _readData(self) -> None:
         if self.filePath.split(".")[-1] in ["xlsx", "xls"]:
             self.file_data = pd.read_excel(self.filePath)
             print("Successfully load excel data...")
@@ -71,7 +79,12 @@ class exceltoDBtable:
         else:
             raise Exception("Unable to load input file...")
 
-    def save2database(self) -> None:
+    @func_running_time
+    def save2db(self) -> None:
+
+        self._postgresql_cur()
+        self._readData()
+
         # specify the table name
         if self.rename_table:
             tableName = self.rename_table
@@ -85,4 +98,4 @@ class exceltoDBtable:
             self.file_data.to_sql(tableName, con=self.engine)
             print("Successfully save %s into Postgresql Database..." % tableName)
         except Exception as e:
-            raise Exception(e)
+            raise Exception(e) from e

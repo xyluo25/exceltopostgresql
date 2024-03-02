@@ -5,4 +5,6 @@
 */build/*
 postgresql_config.json
 Tutorial PyPI.md
-
+*/dist/*
+dist/*
+build/*

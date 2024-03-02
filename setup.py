@@ -12,7 +12,7 @@ except Exception:
 
 setuptools.setup(
     name="exceltopostgresql",
-    version="0.2.3",
+    version="0.2.4",
     author="Xiangyong Luo",
     author_email="rochemay@163.com",
     description="This package help convert your excel files (xlsx,xls,csv) to Postgresql Database.",
@@ -26,7 +26,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.10',
 
     install_requires=modules_needed,
     packages=setuptools.find_packages(),

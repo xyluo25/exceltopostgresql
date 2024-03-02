@@ -10,4 +10,4 @@ from ._model import *
 
 # from .exceltopostgresql import *
 
-print("version 0.2.3")
+print("version 0.2.4")
