@@ -11,7 +11,7 @@ except Exception:
     modules_needed = []
 
 setuptools.setup(
-    name="exceltopostgresql", # Replace with your own username
+    name="exceltopostgresql",
     version="0.2.3",
     author="Xiangyong Luo",
     author_email="rochemay@163.com",

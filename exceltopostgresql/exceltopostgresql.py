@@ -4,19 +4,25 @@
 # Contact Info: luoxiangyong01@gmail.com
 # Author/Copyright: Mr. Xiangyong Luo
 ##############################################################
-
+from __future__ import annotations
+from typing import TYPE_CHECKING
 
 import socket
-
 import pandas as pd
-import psycopg2
 import sqlalchemy
-from pyufunc import func_running_time
+from pyufunc import func_running_time, requires
+
+if TYPE_CHECKING:
+    import sqlalchemy
+    import pandas as pd
+    import psycopg2
+
 
 hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
 
+@requires("pandas", "sqlalchemy")
 class ExcelToDB:
     """This is a model to automatically save your local excel file (xlsx,xls,csv) to your Postgresql Database
         define inputs variables
@@ -55,15 +61,15 @@ class ExcelToDB:
         self.port = port
         self.rename_table = rename_table
 
-        self.postgresql_cur()
-        self.readData()
-        self.save2database()
+    def _postgresql_cur(self):
+        try:
+            db_url = f"postgresql+psycopg2://{self.usrID}:{self.pwd}@{self.host_ip}:{self.port}/{self.database_name}"
+            self.engine = sqlalchemy.create_engine(db_url)
+            print("Successfully connect to postgresql...")
+        except Exception as e:
+            raise Exception(e) from e
 
-    def postgresql_cur(self):
-        db_url = f"postgresql+psycopg2://{self.usrID}:{self.pwd}@{self.host_ip}:{self.port}/{self.database_name}"
-        self.engine = sqlalchemy.create_engine(db_url)
-
-    def readData(self) -> None:
+    def _readData(self) -> None:
         if self.filePath.split(".")[-1] in ["xlsx", "xls"]:
             self.file_data = pd.read_excel(self.filePath)
             print("Successfully load excel data...")
@@ -74,7 +80,11 @@ class ExcelToDB:
             raise Exception("Unable to load input file...")
 
     @func_running_time
-    def save2database(self) -> None:
+    def save2db(self) -> None:
+
+        self._postgresql_cur()
+        self._readData()
+
         # specify the table name
         if self.rename_table:
             tableName = self.rename_table

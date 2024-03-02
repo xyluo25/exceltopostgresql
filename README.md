@@ -55,14 +55,19 @@ ip = ep.local_ip
 yourHostORip  = ip
 
 
-# STEP Two  convert your data to sql server
+# STEP Two connect to postgresql server and load your input data
 ep.exceltoDBtable(yourFile,yourHostORip,yourUsrID,yourPWD,yourDBname,save2tableName)
+
+# STEP Three, save loaded data onto postgresql
+ep.save2db()
+
 ```
+
 
 ```
 output:
 Successfully load excel data...
-Secessfully connected to SQL Server...
+Secessfully connected to postgresql...
 Secessfully saved 'yourtable' to Postgresql...
 ```
 

@@ -3,4 +3,6 @@
 *.pypirc
 */dist/*
 */build/*
+postgresql_config.json
+Tutorial PyPI.md
 
