@@ -9,4 +9,4 @@ shapely
 numpy
 beautifulsoup4
 requests
-urlib3
+urllib3
